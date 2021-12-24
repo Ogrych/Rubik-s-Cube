@@ -1016,10 +1016,14 @@ public class Cube {
 		String side;
 		int position;
 		String secondColor;
+		String potentialSide;
+		String potentialSetMove;
 		Cross_piece (String side, int position, String secondColor) {
 			this.side = side;
 			this.position = position;
 			this.secondColor = secondColor;
+			this.potentialSide = "";
+			this.potentialSetMove = "";
 		}
 	}
 	public ArrayList<Cross_piece> cross_determine_good_pieces() {
@@ -1238,10 +1242,66 @@ public class Cube {
 		}*/
 		return misplacedPieces;
 	}
-	
+	public void cross_determine_potential_good_sides(ArrayList<Cross_piece> goodPieces) {
+		for (Cross_piece good : goodPieces) {
+			if (good.position == 3 && good.side.contentEquals("F")) {
+				good.potentialSide = "L";
+				good.potentialSetMove = "L";
+			}
+			if (good.position == 5 && good.side.contentEquals("F")) {
+				good.potentialSide = "R";
+				good.potentialSetMove = "R'";
+			}
+			if (good.position == 3 && good.side.contentEquals("R")) {
+				good.potentialSide = "F";
+				good.potentialSetMove = "F";
+			}
+			if (good.position == 5 && good.side.contentEquals("R")) {
+				good.potentialSide = "B";
+				good.potentialSetMove = "B'";
+			}
+			if (good.position == 3 && good.side.contentEquals("B")) {
+				good.potentialSide = "R";
+				good.potentialSetMove = "R";
+			}
+			if (good.position == 5 && good.side.contentEquals("B")) {
+				good.potentialSide = "L";
+				good.potentialSetMove = "L'";
+			}
+			if (good.position == 3 && good.side.contentEquals("L")) {
+				good.potentialSide = "B";
+				good.potentialSetMove = "B";
+			}
+			if (good.position == 5 && good.side.contentEquals("L")) {
+				good.potentialSide = "F";
+				good.potentialSetMove = "F'";
+			}
+		}
+	}
+	public void cross_determine_potential_neutral_sides(ArrayList<Cross_piece> neutralPieces) {
+		for (Cross_piece neutral : neutralPieces) {
+			if (neutral.position == 1) {
+				neutral.potentialSide = "B";
+				neutral.potentialSetMove = "B2";
+			}
+			if (neutral.position == 3) {
+				neutral.potentialSide = "L";
+				neutral.potentialSetMove = "L2";
+			}
+			if (neutral.position == 5) {
+				neutral.potentialSide = "R";
+				neutral.potentialSetMove = "R2";
+			}
+			if (neutral.position == 7) {
+				neutral.potentialSide = "F";
+				neutral.potentialSetMove = "F2";
+			}
+		}
+	}
 	public void CROSS() {
 		ArrayList<ArrayList<String>> wrongColors = noInput_cross_determine_wrong_colors();
-		if (!wrongColors.isEmpty()) {
+		/*if (!wrongColors.isEmpty()) {*/
+		if (true) {
 			cross_rename_white_edges();
 			ArrayList<Cross_piece> goodPieces = cross_determine_good_pieces();
 			ArrayList<Cross_piece> neutralPieces = cross_determine_neutral_pieces();
@@ -1249,9 +1309,30 @@ public class Cube {
 			ArrayList<Cross_piece> veryBadPieces = cross_determine_very_bad_pieces();
 			ArrayList<Cross_piece> misplacedPieces = cross_determine_misplaced_pieces();
 			
-			
-		} else {
+			//looking for bad-very bad pair
+			String[][] pairs = { {"g", "b"}, {"r", "o"} };
+			ArrayList<Cross_piece> bad_veryBad = new ArrayList<Cross_piece>();
+			outerloop:
+			for (Cross_piece piece : badPieces) {
+				for (String[] pair : pairs) {
+					for (String pairColor : pair) {		
+						if (pairColor.contentEquals(piece.secondColor)) {
+							for (Cross_piece piece2 : veryBadPieces) {
+								for (String i : pair) {
+									if (piece2.secondColor.contentEquals(i)) {
+										bad_veryBad.add(piece);
+										bad_veryBad.add(piece2);
+										break outerloop;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			System.out.println("bd vr bd: " + bad_veryBad);
+		} /*else {
 			CROSS = true;
-		}
+		}*/
 	}
 }
