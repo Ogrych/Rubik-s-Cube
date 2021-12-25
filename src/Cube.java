@@ -676,22 +676,15 @@ public class Cube {
 	
 	//CROSS BEGINS HERE-----------------------------------------------------
 	
-	/*public boolean check_cross() { this is shit
+	public boolean check_cross() {
 	// checks if the cross is done, returns a boolean
-		int[] elements1 = {1, 3, 4, 5, 7};
-		for (int i : elements1) {
-			if (D.get(i) != "w") {
-				return false;
-			}
-		}
-		
-		int i = 7;
-		if (F.get(i) != "g" || R.get(i) != "o" || B.get(i) != "b" || L.get(i) != "r") {
-			return false;
-		}
-		
-		return true;
-	}*/
+		boolean Felements = F.get(4) == F.get(7);
+		boolean Relements = R.get(4) == R.get(7);
+		boolean Belements = B.get(4) == B.get(7);
+		boolean Lelements = B.get(4) == B.get(7);
+		boolean whiteElements = (D.get(1) == "w") && (D.get(3) == "w") && (D.get(5) == "w") && (D.get(7) == "w");
+		return Felements && Relements && Belements && Lelements && whiteElements;
+	}
 	public ArrayList<String> determine_cross_set_elements() {
 	// determines on which sides the white elements are already set, returns
 	// an ArrayList with side names
@@ -1300,8 +1293,7 @@ public class Cube {
 	}
 	public void CROSS() {
 		ArrayList<ArrayList<String>> wrongColors = noInput_cross_determine_wrong_colors();
-		/*if (!wrongColors.isEmpty()) {*/
-		if (true) {
+		if (!check_cross()) {
 			cross_rename_white_edges();
 			ArrayList<Cross_piece> goodPieces = cross_determine_good_pieces();
 			ArrayList<Cross_piece> neutralPieces = cross_determine_neutral_pieces();
@@ -1331,8 +1323,8 @@ public class Cube {
 				}
 			}
 			System.out.println("bd vr bd: " + bad_veryBad);
-		} /*else {
+		} else {
 			CROSS = true;
-		}*/
+		}
 	}
 }

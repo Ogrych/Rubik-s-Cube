@@ -19,8 +19,7 @@ public class Main {
 		cube.cross_determine_bad_pieces();
 		cube.cross_determine_very_bad_pieces();
 		cube.cross_determine_misplaced_pieces();
-		cube.CROSS();
-		
+		//cube.CROSS();	
 		
 
 		System.out.println(cube.toString() + "\n");
