@@ -21,6 +21,8 @@ public class Cube {
 	boolean OLL = false;
 	boolean PLL = false;
 	
+	ArrayList<String> solvingMoves = new ArrayList<String>();
+	
 	Cube () {
 		for (int i = 0; i < 9; i++) {
 			this.F.add("g");
@@ -605,6 +607,230 @@ public class Cube {
 			}
 		}
 		z2();
+	}
+	public void move(String scr) {
+		String[] scramble = scr.split(" ");
+		for (String i : scramble) {
+			i = i.toLowerCase();
+			switch(i) {
+				case "u":
+					U();
+					solvingMoves.add("U");
+					break;
+				case "u'":
+					U_();
+					solvingMoves.add("U'");
+					break;
+				case "u2":
+					U2();
+					solvingMoves.add("U2");
+					break;
+				case "d":
+					D();
+					solvingMoves.add("D");
+					break;
+				case "d'":
+					D_();
+					solvingMoves.add("D'");
+					break;
+				case "d2":
+					D2();
+					solvingMoves.add("D2");
+					break;
+				case "b":
+					B();
+					solvingMoves.add("B");
+					break;
+				case "b'":
+					B_();
+					solvingMoves.add("B'");
+					break;
+				case "b2":
+					B2();
+					solvingMoves.add("B2");
+					break;
+				case "f":
+					F();
+					solvingMoves.add("F");
+					break;
+				case "f'":
+					F_();
+					solvingMoves.add("F'");
+					break;
+				case "f2":
+					F2();
+					solvingMoves.add("F2");
+					break;
+				case "r":
+					R();
+					solvingMoves.add("R");
+					break;
+				case "r'":
+					R_();
+					solvingMoves.add("R'");
+					break;
+				case "r2":
+					R2();
+					solvingMoves.add("R2");
+					break;
+				case "l":
+					L();
+					solvingMoves.add("L");
+					break;
+				case "l'":
+					L_();
+					solvingMoves.add("L'");
+					break;
+				case "l2":
+					L2();
+					solvingMoves.add("L2");
+					break;
+				case "s":
+					S();
+					solvingMoves.add("S");
+					break;
+				case "s'":
+					S_();
+					solvingMoves.add("S'");
+					break;
+				case "s2":
+					S2();
+					solvingMoves.add("S2");
+					break;
+				case "e":
+					E();
+					solvingMoves.add("E");
+					break;
+				case "e'":
+					E_();
+					solvingMoves.add("E'");
+					break;
+				case "e2":
+					E2();
+					solvingMoves.add("E2");
+					break;
+				case "m":
+					M();
+					solvingMoves.add("M");
+					break;
+				case "m'":
+					M_();
+					solvingMoves.add("M'");
+					break;
+				case "m2":
+					M2();
+					solvingMoves.add("M2");
+					break;
+				case "fw":
+					Fw();
+					solvingMoves.add("Fw");
+					break;
+				case "fw'":
+					Fw_();
+					solvingMoves.add("Fw'");
+					break;
+				case "fw2":
+					Fw2();
+					solvingMoves.add("Fw2");
+					break;
+				case "bw":
+					Bw();
+					solvingMoves.add("Bw");
+					break;
+				case "bw'":
+					Bw_();
+					solvingMoves.add("Bw'");
+					break;
+				case "bw2":
+					Bw2();
+					solvingMoves.add("Bw2");
+					break;
+				case "lw":
+					Lw();
+					solvingMoves.add("Lw");
+					break;
+				case "lw'":
+					Lw_();
+					solvingMoves.add("Lw'");
+					break;
+				case "lw2":
+					Lw2();
+					solvingMoves.add("Lw2");
+					break;
+				case "rw":
+					Rw();
+					solvingMoves.add("Rw");
+					break;
+				case "rw'":
+					Rw_();
+					solvingMoves.add("Rw'");
+					break;
+				case "rw2":
+					Rw2();
+					solvingMoves.add("Rw2");
+					break;
+				case "uw":
+					Uw();
+					solvingMoves.add("Uw");
+					break;
+				case "uw'":
+					Uw_();
+					solvingMoves.add("Uw'");
+					break;
+				case "uw2":
+					Uw2();
+					solvingMoves.add("Uw2");
+					break;
+				case "dw":
+					Dw();
+					solvingMoves.add("Dw");
+					break;
+				case "dw'":
+					Dw_();
+					solvingMoves.add("Dw'");
+					break;
+				case "dw2":
+					Dw2();
+					solvingMoves.add("Dw2");
+					break;
+				case "x":
+					x();
+					solvingMoves.add("x");
+					break;
+				case "x'":
+					x_();
+					solvingMoves.add("x'");
+					break;
+				case "x2":
+					x2();
+					solvingMoves.add("x2");
+					break;
+				case "y":
+					y();
+					solvingMoves.add("y");
+					break;
+				case "y'":
+					y_();
+					solvingMoves.add("y'");
+					break;
+				case "y2":
+					y2();
+					solvingMoves.add("y2");
+					break;
+				case "z":
+					z();
+					solvingMoves.add("z");
+					break;
+				case "z'":
+					z_();
+					solvingMoves.add("z'");
+					break;
+				case "z2":
+					z2();
+					solvingMoves.add("z2");
+					break;
+			}
+		}
 	}
 	
 	public String randomScramble(int moves) {
@@ -1236,6 +1462,7 @@ public class Cube {
 		return misplacedPieces;
 	}
 	public void cross_determine_potential_good_sides(ArrayList<Cross_piece> goodPieces) {
+	//applies potential good pieces idea and makes changes into class objects
 		for (Cross_piece good : goodPieces) {
 			if (good.position == 3 && good.side.contentEquals("F")) {
 				good.potentialSide = "L";
@@ -1272,6 +1499,7 @@ public class Cube {
 		}
 	}
 	public void cross_determine_potential_neutral_sides(ArrayList<Cross_piece> neutralPieces) {
+	//applies potential neutral pieces idea and makes changes into class objects
 		for (Cross_piece neutral : neutralPieces) {
 			if (neutral.position == 1) {
 				neutral.potentialSide = "B";
@@ -1322,7 +1550,36 @@ public class Cube {
 					}
 				}
 			}
-			System.out.println("bd vr bd: " + bad_veryBad);
+			if (!bad_veryBad.isEmpty()) {
+				cross_determine_potential_good_sides(goodPieces);
+				cross_determine_potential_neutral_sides(neutralPieces);
+				
+				while (!bad_veryBad.get(0).side.contentEquals(bad_veryBad.get(1).side)) {
+				// aligning bad and very bad with the D movement
+					move("D");
+				}
+				
+				ArrayList<String> setElements = new ArrayList<String>();
+				if (D.get(1) == "w") {
+					setElements.add("F");
+				}
+				if (D.get(5) == "w") {
+					setElements.add("R");
+				}
+				if (D.get(7) == "w") {
+					setElements.add("B");
+				}
+				if (D.get(3) == "w") {
+					setElements.add("L");
+				}
+				
+				/*there are 3 factors to consider
+				 * set pieces, good pieces and neutral pieces.
+				 * set pieces are already here, just connect it all together*/
+				if (setElements.isEmpty() && neutralPieces.isEmpty()) {
+					//smth
+				}
+			}
 		} else {
 			CROSS = true;
 		}
